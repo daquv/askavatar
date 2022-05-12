@@ -1,0 +1,73 @@
+#
+# server(local properties)
+#
+server:
+  port: 8091
+  tomcat:
+    max-threads: 2000
+    accept-count: 2000
+    max-connections: 4000
+    min-spare-threads: 25
+    connection-timeout: 5000
+  is-dev: true
+  servlet:
+    session:
+      timeout: 120m
+
+
+daquv:  
+  user:
+    salt-key: 'nmOTABQVUya4PoVD6ty9tcXA17Nc36qAMFg/Z5UzlwI='
+    ut-salt-key: '{cipher}BQckjcYQFzfMKEJAJMQbaWNRPAPGB11PJ3N9oBUY560=' 
+    key: '{cipher}37XMG+nAN3uBv0CPn59dW8IQB6SFAXPfYgE1AYss4As='    
+    master:
+      datasource:
+        type: org.apache.tomcat.jdbc.pool.DataSource
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        url: jdbc:log4jdbc:mysql://localhost:3306/askavatardb?autoReconnect=True&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+        username: root
+        password: 1111
+        max-active: 5
+        max-idle: 5
+        min-idle: 1
+        test-while-idle: true
+        time-between-eviction-runs-millis: 60000
+        validation-query: SELECT 1
+    slave:
+      datasource:
+        type: org.apache.tomcat.jdbc.pool.DataSource
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        url: jdbc:log4jdbc:mysql://localhost:3306/askavatardb?autoReconnect=True&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+        username: root
+        password: 1111 
+        max-active: 5
+        max-idle: 5
+        min-idle: 1
+        test-while-idle: true
+        time-between-eviction-runs-millis: 60000
+        validation-query: SELECT 1
+          
+spring:
+  application:
+    name: askavatar
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+  messages:
+    basename: messages/messages
+    cache-duration: 1m
+    always-use-message-format: true
+    fallback-to-system-locale: false
+    encoding: UTF-8
+  thymeleaf:
+    cache: false
+
+logging:
+  config: classpath:logging/logback-spring.xml
+  level:
+    default: DEBUG
+    mybatis: DEBUG
+    org:
+      springframework:
+        scheduling: INFO
