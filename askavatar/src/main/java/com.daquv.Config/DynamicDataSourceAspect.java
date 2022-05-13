@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import com.daquv.Config.ReadWriteDataSource;
 
 import java.lang.reflect.Method;
 
@@ -17,7 +18,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class DynamicDataSourceAspect {
-	@Pointcut("@annotation(com.daquv.Config.ReadWriteDataSource)")
+	@Pointcut("@annotation(ReadWriteDataSource)")
 	public void pointcut() {
 	}
 

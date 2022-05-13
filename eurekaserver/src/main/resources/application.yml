@@ -3,9 +3,16 @@ server:
 
 spring:
   application:
-    name: discovery-service
+    name: discovery-service1
+
 
 eureka:
   client:
-    register-with-eureka: false #eureka server를 registry에 등록할지 여부
+    register-with-eureka: false #peer에 필요함 싱글 false. peer true
     fetch-registry: false       #registry에 있는 정보들을 가져올지 여부
+      serviceUrl:
+        defaultZone: http://locahost:${server.port}/eureka
+  server:
+    enable-self-preservation: true
+  instance:
+    hostname: first

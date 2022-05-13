@@ -16,10 +16,13 @@ spring:
       enabled: true
     gateway:
       routes:
-        - id: 1
-          uri: http://localhost:8091
+        - id: askavatar1
+          uri: http://localhost:8091 #eureka 사용할 경우  lb://askavatar 로 변경
           predicates:
             - Path=/api/v1/askavatar/**
+            - Cookie=valid, askavatar # 헤더 쿠키값이 있는지 없는지 체크
+          filters:
+            - AddRequestHeader=token, 12345 # 헤더의 토큰값 체크
             
 logging:
   level:
